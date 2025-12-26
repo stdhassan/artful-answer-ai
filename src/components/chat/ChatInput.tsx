@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, Sparkles, Image, Code, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -11,6 +12,7 @@ interface ChatInputProps {
 export function ChatInput({ onSend, isLoading }: ChatInputProps) {
   const [input, setInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { t, isRTL } = useLanguage();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -35,9 +37,9 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
   };
 
   const suggestions = [
-    { icon: Code, label: 'Write code', prompt: 'Write a function that ' },
-    { icon: Image, label: 'Generate image', prompt: 'Generate an image of ' },
-    { icon: FileText, label: 'Explain concept', prompt: 'Explain how ' },
+    { icon: Code, label: t('generateCode'), prompt: 'Write a function that ' },
+    { icon: Image, label: t('createImage'), prompt: 'Generate an image of ' },
+    { icon: FileText, label: t('explainConcept'), prompt: 'Explain how ' },
   ];
 
   return (
@@ -66,9 +68,10 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask me anything... Generate code, images, infographics..."
+              placeholder={t('typeMessage')}
               rows={1}
               disabled={isLoading}
+              dir={isRTL ? 'rtl' : 'ltr'}
               className={cn(
                 'flex-1 bg-transparent resize-none outline-none text-foreground placeholder:text-muted-foreground',
                 'min-h-[24px] max-h-[200px]'

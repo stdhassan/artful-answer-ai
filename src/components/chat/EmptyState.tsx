@@ -1,30 +1,33 @@
 import React from 'react';
 import { Sparkles, Code, Image, Lightbulb, FileSliders } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function EmptyState() {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Code,
-      title: 'Code Generation',
-      description: 'Generate code in any language with syntax highlighting',
+      titleKey: 'codeGeneration',
+      descKey: 'codeDesc',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Image,
-      title: 'Image Creation',
-      description: 'Create stunning images from text descriptions',
+      titleKey: 'imageCreation',
+      descKey: 'imageDesc',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: FileSliders,
-      title: 'Infographics & Slides',
-      description: 'Design visual presentations and data graphics',
+      titleKey: 'infographics',
+      descKey: 'infographicsDesc',
       gradient: 'from-orange-500 to-red-500',
     },
     {
       icon: Lightbulb,
-      title: 'Smart Solutions',
-      description: 'Get intelligent answers to complex problems',
+      titleKey: 'smartSolutions',
+      descKey: 'smartDesc',
       gradient: 'from-green-500 to-emerald-500',
     },
   ];
@@ -39,25 +42,25 @@ export function EmptyState() {
             <Sparkles className="h-8 w-8 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold gradient-text">NexusAI</h1>
-            <p className="text-muted-foreground">Your intelligent assistant</p>
+            <h1 className="text-3xl md:text-4xl font-bold gradient-text">{t('appName')}</h1>
+            <p className="text-muted-foreground">{t('poweredBy')}</p>
           </div>
         </div>
       </div>
 
       {/* Welcome text */}
       <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-2 text-center">
-        How can I help you today?
+        {t('howCanIHelp')}
       </h2>
       <p className="text-muted-foreground text-center max-w-md mb-10">
-        I can generate code, create images, design infographics, and much more. Just ask!
+        {t('capabilities')}
       </p>
 
       {/* Feature cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl w-full">
         {features.map((feature) => (
           <div
-            key={feature.title}
+            key={feature.titleKey}
             className="group p-5 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 cursor-pointer"
           >
             <div className="flex items-start gap-4">
@@ -65,8 +68,8 @@ export function EmptyState() {
                 <feature.icon className="h-5 w-5 text-foreground" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h3 className="font-semibold text-foreground mb-1">{t(feature.titleKey)}</h3>
+                <p className="text-sm text-muted-foreground">{t(feature.descKey)}</p>
               </div>
             </div>
           </div>

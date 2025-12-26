@@ -139,6 +139,7 @@ export function useChat() {
 
   return {
     messages,
+    setMessages,
     isLoading,
     sendMessage,
     clearChat,
