@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -54,6 +54,54 @@
     --sidebar-border: 220 16% 18%;
     --sidebar-ring: 190 95% 55%;
   }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 190 95% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 20% 10%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 270 70% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 190 95% 40%;
+
+    /* Custom gradients for light mode */
+    --gradient-primary: linear-gradient(135deg, hsl(190 95% 40%), hsl(270 70% 55%));
+    --gradient-glow: linear-gradient(135deg, hsl(190 95% 40% / 0.2), hsl(270 70% 55% / 0.2));
+    --gradient-surface: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 14% 96%));
+    
+    /* Custom shadows for light mode */
+    --shadow-glow: 0 0 40px hsl(190 95% 40% / 0.1);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.08);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 20% 10%;
+    --sidebar-primary: 190 95% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 94%;
+    --sidebar-accent-foreground: 220 20% 10%;
+    --sidebar-border: 220 14% 90%;
+    --sidebar-ring: 190 95% 40%;
+  }
 }
 
 @layer base {
@@ -63,7 +111,11 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', 'Noto Sans Arabic', sans-serif;
+  }
+
+  [dir="rtl"] body {
+    font-family: 'Noto Sans Arabic', 'Space Grotesk', sans-serif;
   }
 
   code, pre {
